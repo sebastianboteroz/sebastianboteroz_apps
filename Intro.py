@@ -11,13 +11,38 @@ st.set_page_config(
 )
 
 # ==========================================
-# ESTILOS CSS UX/UI (AZUL COBALTO & CARDS)
+# ESTILOS CSS UX/UI (BANNER Y AZUL COBALTO)
 # ==========================================
 st.markdown("""
 <style>
     /* Estilos globales */
     .stApp {
         background-color: #F8FAFC;
+    }
+
+    /* Banner Superior Estilizado en Azul Cobalto */
+    .hero-banner {
+        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #1D4ED8 100%);
+        padding: 2.5rem 2rem;
+        border-radius: 18px;
+        color: #FFFFFF;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+    }
+
+    .hero-banner h1 {
+        color: #FFFFFF !important;
+        font-weight: 800;
+        font-size: 2.3rem;
+        margin-bottom: 0.4rem;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .hero-banner p {
+        color: #DBEAFE;
+        font-size: 1.05rem;
+        margin: 0;
     }
     
     /* Estilo para los contenedores/cards de Streamlit */
@@ -88,12 +113,14 @@ with st.sidebar:
     st.caption("EAFIT | Interfaces Multimodales & Producto")
 
 # ==========================================
-# ENCABEZADO PRINCIPAL
+# BANNER PRINCIPAL
 # ==========================================
-st.title("Aplicaciones de Inteligencia Artificial 🤖")
-st.caption("Portafolio interactivo de herramientas web y modelos multimodales.")
-
-st.markdown("---")
+st.markdown("""
+<div class="hero-banner">
+    <h1>Mis Aplicaciones de Inteligencia Artificial ✨</h1>
+    <p>Repositorio interactivo de proyectos e interfaces desarrolladas para procesamiento multimodal, visión y NLP.</p>
+</div>
+""", unsafe_allow_html=True)
 
 # ==========================================
 # DATOS DE APPS (ORDEN EXACTO)
@@ -180,10 +207,9 @@ for i in range(0, len(apps), 3):
     
     for idx, app in enumerate(group):
         with cols[idx]:
-            # Contenedor nativo con borde/sombra (Card real)
             with st.container(border=True):
                 st.markdown(f'<span class="app-badge">APP {app["num"]}</span>', unsafe_allow_html=True)
                 st.subheader(f"{app['icon']} {app['title']}")
                 st.write(app['desc'])
-                st.write("") # Espaciador
+                st.write("")
                 st.link_button("Abrir App 🚀", app['url'], use_container_width=True)
