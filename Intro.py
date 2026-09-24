@@ -1,104 +1,304 @@
 import streamlit as st
-from PIL import Image
 
-# Configuración básica de la página
-st.set_page_config(page_title="Aplicaciones de Inteligencia Artificial", layout="wide")
+# ==========================================
+# CONFIGURACIÓN DE PÁGINA
+# ==========================================
+st.set_page_config(
+    page_title="Sebastián Botero | Portafolio de Aplicaciones IA",
+    page_icon="🚀",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-st.title("Aplicaciones de Inteligencia Artificial 🤖")
+# ==========================================
+# ESTILOS CSS PERSONALIZADOS (UI/UX)
+# ==========================================
+st.markdown("""
+<style>
+    /* Fondo limpio de la aplicación */
+    .stApp {
+        background-color: #F8FAFC;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-# Barra lateral con tu información de perfil
+    .main {
+        padding: 2rem 3rem;
+    }
+
+    /* Encabezado Principal */
+    .portfolio-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .portfolio-header h1 {
+        color: #0F172A !important;
+        font-weight: 800;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .portfolio-header p {
+        color: #64748B;
+        font-size: 1.15rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Grilla Responsive para las Cards */
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.8rem;
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+
+    /* Estilo de las Cards (Inspirado en la referencia visual) */
+    .ui-card {
+        background: #FFFFFF;
+        border-radius: 14px;
+        padding: 1.8rem 1.5rem 1.5rem 1.5rem;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid #E2E8F0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Efecto Hover con Animación Sutil */
+    .ui-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+        border-color: #CBD5E1;
+    }
+
+    /* Barra superior decorativa de color en cada card */
+    .card-accent {
+        position: absolute;
+        top: 0;
+        right: 1.5rem;
+        width: 45px;
+        height: 5px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    /* Número de índice estilizado en marca de agua */
+    .card-number {
+        position: absolute;
+        top: 0.8rem;
+        left: 1.2rem;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #F1F5F9;
+        z-index: 1;
+        user-select: none;
+    }
+
+    /* Contenedor del ícono */
+    .card-icon-wrapper {
+        position: relative;
+        z-index: 2;
+        margin-top: 1rem;
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: #F8FAFC;
+    }
+
+    /* Contenido de la Card */
+    .card-body {
+        position: relative;
+        z-index: 2;
+        flex-grow: 1;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #0F172A;
+        margin-bottom: 0.6rem;
+    }
+
+    .card-description {
+        font-size: 0.92rem;
+        color: #64748B;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Botón con alto contraste */
+    .card-btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background-color: #2563EB; /* Azul de alto contraste */
+        color: #FFFFFF !important;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-align: center;
+        text-decoration: none !important;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    }
+
+    .card-btn:hover {
+        background-color: #1D4ED8;
+        transform: translateY(-1px);
+        color: #FFFFFF !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# ==========================================
+# BARRA LATERAL (DATOS DEL AUTOR)
+# ==========================================
 with st.sidebar:
-    st.subheader("Aplicaciones con Inteligencia Artificial")
-    parrafo = (
-        "Esta plataforma reúne un portafolio de aplicaciones interactivas desarrolladas con "
-        "modelos de Visión por Computador, Procesamiento de Lenguaje Natural (NLP), "
-        "Sintetización de Voz e Interfaces Multimodales."
+    st.markdown("## 👨‍💻 Sebastián Botero Z.")
+    st.caption("Diseñador de Interfaces & Desarrollador de Inteligencia Artificial")
+    st.markdown("---")
+    st.write(
+        "Bienvenido a mi ecosistema de prototipos interactivos de IA. "
+        "Aquí puedes explorar soluciones avanzadas de visión por computador, procesamiento de lenguaje natural y síntesis de voz."
     )
-    st.write(parrafo)
+    st.markdown("---")
+    st.caption("EAFIT | Interfaces Multimodales & Producto")
 
-# Función auxiliar para cargar imágenes sin romper la aplicación si no se encuentra el archivo local
-def cargar_imagen(nombre_archivo, url_respaldo):
-    try:
-        img = Image.open(nombre_archivo)
-        st.image(img, width=200)
-    except Exception:
-        st.image(url_respaldo, width=200)
+# ==========================================
+# ENCABEZADO
+# ==========================================
+st.markdown("""
+<div class="portfolio-header">
+    <h1>Aplicaciones de Inteligencia Artificial 🤖</h1>
+    <p>Portafolio interactivo de herramientas web y modelos multimodales</p>
+</div>
+""", unsafe_allow_html=True)
 
-# Distribución original en 3 columnas principales
-col1, col2, col3 = st.columns(3)
+# ==========================================
+# LISTA DE DATOS DE APPS (ORDEN EXACTO PEDIDO)
+# ==========================================
+apps_data = [
+    {
+        "num": "01",
+        "title": "Mi Primera App IA",
+        "description": "Primer desarrollo exploratorio e interfaz básica de interacción multimodal.",
+        "url": "https://miprimeraappsebas.streamlit.app/",
+        "color": "#EC4899", # Rosa
+        "icon": "🚀"
+    },
+    {
+        "num": "02",
+        "title": "Conversión de Texto a Audio",
+        "description": "Generación de voz sintética de alta calidad a partir de entradas de texto.",
+        "url": "https://interfacesmultimodalessebas.streamlit.app/",
+        "color": "#06B6D4", # Cian
+        "icon": "🎧"
+    },
+    {
+        "num": "03",
+        "title": "Traductor Multimodal",
+        "description": "Herramienta inteligente de traducción para múltiples idiomas con voz y texto.",
+        "url": "https://traductorsebastianboteroz.streamlit.app/",
+        "color": "#EAB308", # Amarillo
+        "icon": "🌐"
+    },
+    {
+        "num": "04",
+        "title": "Digitalización OCR",
+        "description": "Reconocimiento óptico de caracteres para extraer texto desde imágenes físicas.",
+        "url": "https://ocr-sebastianboteroz.streamlit.app/",
+        "color": "#22C55E", # Verde
+        "icon": "📄"
+    },
+    {
+        "num": "05",
+        "title": "OCR con Reproducción de Audio",
+        "description": "Digitaliza textos impresos desde imágenes y los reproduce en voz hablada.",
+        "url": "https://ocr-audiosebastianboteroz.streamlit.app/",
+        "color": "#A855F7", # Morado
+        "icon": "📢"
+    },
+    {
+        "num": "06",
+        "title": "WordCloud Studio",
+        "description": "Generación de nubes de palabras interactivas para análisis de frecuencia textual.",
+        "url": "https://wordcloudsebastianboterozz.streamlit.app/",
+        "color": "#EF4444", # Rojo
+        "icon": "📊"
+    },
+    {
+        "num": "07",
+        "title": "Análisis de Sentimiento",
+        "description": "Evaluación de polaridad emocional y clasificación de opiniones en español.",
+        "url": "https://sentimentalsebastianboteroz.streamlit.app/",
+        "color": "#3B82F6", # Azul
+        "icon": "🎭"
+    },
+    {
+        "num": "08",
+        "title": "TF-IDF en Español",
+        "description": "Modelado de relevancia semántica de términos y frecuencia inversa en corpus de texto.",
+        "url": "https://tdfesp-sebastianboterozz.streamlit.app/",
+        "color": "#6366F1", # Índigo
+        "icon": "🔤"
+    },
+    {
+        "num": "09",
+        "title": "Detección de Objetos YOLOv5",
+        "description": "Detección, delimitación y etiquetado de objetos en imágenes mediante YOLOv5.",
+        "url": "https://yolov5sebastianboteroz.streamlit.app/",
+        "color": "#14B8A6", # Teal
+        "icon": "🎯"
+    },
+    {
+        "num": "10",
+        "title": "Reconocimiento Teachable Machine",
+        "description": "Clasificación de imágenes utilizando modelos entrenados en Teachable Machine.",
+        "url": "https://teachablemachinesebastianboteroz.streamlit.app/",
+        "color": "#F97316", # Naranja
+        "icon": "🧠"
+    }
+]
 
-# ==================== FILA 1 ====================
-with col1:
-    st.subheader("Conversión de texto a voz")
-    cargar_imagen('txt_to_audio2.png', "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=400&q=80")
-    st.write("Sintetiza voz de alta calidad a partir de entradas de texto.") 
-    st.write("Texto a voz: [Probar App](https://interfacesmultimodalessebas.streamlit.app/)")
+# ==========================================
+# RENDERIZADO DE LAS CARDS EN GRID RESPONSIVE
+# ==========================================
+cards_html = '<div class="cards-grid">'
 
-with col2: 
-    st.subheader("Traductor Multimodal")
-    cargar_imagen('OIG8.jpg', "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80")
-    st.write("Traducción inteligente e interactiva de texto y voz.") 
-    st.write("Traductor: [Probar App](https://traductorsebastianboteroz.streamlit.app/)")
+for app in apps_data:
+    cards_html += f"""
+    <div class="ui-card">
+        <div class="card-accent" style="background-color: {app['color']};"></div>
+        <div class="card-number">{app['num']}</div>
+        <div class="card-icon-wrapper">
+            <div class="card-icon" style="font-size: 1.5rem;">
+                {app['icon']}
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-title">{app['title']}</div>
+            <div class="card-description">{app['description']}</div>
+        </div>
+        <a href="{app['url']}" target="_blank" class="card-btn">Abrir App 🚀</a>
+    </div>
+    """
 
-with col3: 
-    st.subheader("Lectura OCR")
-    cargar_imagen('data_analisis.png', "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=400&q=80")
-    st.write("Digitalización y extracción de texto desde imágenes mediante OCR.") 
-    st.write("OCR: [Probar App](https://ocr-sebastianboteroz.streamlit.app/)")
+cards_html += '</div>'
 
-st.markdown("---")
-
-# ==================== FILA 2 ====================
-col4, col5, col6 = st.columns(3)
-
-with col4:
-    st.subheader("Lectura OCR con Audio")
-    cargar_imagen('OIG3.jpg', "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=400&q=80")
-    st.write("Extrae texto impreso de imágenes y lo reproduce en voz.") 
-    st.write("OCR + Audio: [Probar App](https://ocr-audiosebastianboteroz.streamlit.app/)")
-
-with col5:
-    st.subheader("WordCloud Studio")
-    cargar_imagen('Chat_pdf.png', "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80")
-    st.write("Visualización y nubes de palabras interactivas para análisis de frecuencia.") 
-    st.write("WordCloud: [Probar App](https://wordcloudsebastianboterozz.streamlit.app/)")
-
-with col6:
-    st.subheader("Análisis de Sentimiento")
-    cargar_imagen('OIG4.jpg', "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=400&q=80")
-    st.write("Evaluación de polaridad y emociones expresadas en texto.") 
-    st.write("Sentimiento: [Probar App](https://sentimentalsebastianboteroz.streamlit.app/)")
-
-st.markdown("---")
-
-# ==================== FILA 3 ====================
-col7, col8, col9 = st.columns(3)
-
-with col7:
-    st.subheader("TF-IDF en Español")
-    cargar_imagen('OIG6.jpg', "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80")
-    st.write("Modelado de relevancia de términos y frecuencia inversa en español.") 
-    st.write("TF-IDF: [Probar App](https://tdfesp-sebastianboterozz.streamlit.app/)")
-
-with col8:
-    st.subheader("Detección de Objetos")
-    cargar_imagen('txt_to_audio.png', "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80")
-    st.write("Identificación y delimitación de objetos con YOLOv5.") 
-    st.write("YOLOv5: [Probar App](https://yolov5sebastianboteroz.streamlit.app/)")
-
-with col9:
-    st.subheader("Reconocimiento Teachable")
-    cargar_imagen('OIG5.jpg', "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=400&q=80")
-    st.write("Clasificación de imágenes con modelos entrenados en Teachable Machine.") 
-    st.write("Teachable Machine: [Probar App](https://teachablemachinesebastianboteroz.streamlit.app/)")
-
-st.markdown("---")
-
-# ==================== FILA 4 ====================
-col10, col11, col12 = st.columns(3)
-
-with col10:
-    st.subheader("Mi Primera App IA")
-    cargar_imagen('OIG5.jpg', "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80")
-    st.write("Primer desarrollo exploratorio e interfaz básica de interacción.") 
-    st.write("Mi Primera App: [Probar App](https://miprimeraappsebas.streamlit.app/)")
+# Despliegue en Streamlit
+st.markdown(cards_html, unsafe_allow_html=True)
