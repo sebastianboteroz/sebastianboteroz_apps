@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==========================================
-# ESTILOS CSS UX/UI (REDONDEO PESTAÑAS Y CARDS)
+# ESTILOS CSS UX/UI (PESTAÑAS CAPSULA Y CARDS)
 # ==========================================
 st.markdown("""
 <style>
@@ -45,39 +45,42 @@ st.markdown("""
         margin: 0;
     }
 
-    /* BORDES REDONDEADOS Y ESPACIADO FORZADO EN PESTAÑAS (st.tabs) */
+    /* AJUSTES UX/UI PARA PESTAÑAS TIPO CÁPSULA (PILLS) */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 12px !important;
+        gap: 16px !important;
         margin-bottom: 2rem !important;
-        border-bottom: 2px solid #E2E8F0 !important;
+        border-bottom: none !important;
     }
 
     .stTabs [data-baseweb="tab"] {
         background-color: #E2E8F0 !important;
-        border-top-left-radius: 12px !important;
-        border-top-right-radius: 12px !important;
-        padding: 0.8rem 1.8rem !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 2.2rem !important; /* Espaciado lateral amplio */
         font-weight: 700 !important;
-        font-size: 0.95rem !important;
+        font-size: 1rem !important;
         color: #475569 !important;
         border: 1px solid #CBD5E1 !important;
-        border-bottom: none !important;
         transition: all 0.2s ease !important;
     }
 
-    /* Pestaña activa con bordes bien definidos y sin barra roja */
-    .stTabs [aria-selected="true"] {
-        background-color: #2563EB !important;
-        color: #FFFFFF !important;
-        border-color: #2563EB !important;
-        border-top-left-radius: 12px !important;
-        border-top-right-radius: 12px !important;
-        box-shadow: 0 -2px 10px rgba(37, 99, 235, 0.2) !important;
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #CBD5E1 !important;
+        color: #1E293B !important;
     }
 
-    /* Ocultar la barra indicadora roja nativa de Streamlit */
+    /* Pestaña seleccionada (Pill Activa en Azul Cobalto) */
+    .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+        color: #FFFFFF !important;
+        border-color: #2563EB !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+    }
+
+    /* Ocultar franja/línea roja por completo */
     .stTabs [data-baseweb="tab-border-highlight"] {
-        background-color: transparent !important;
+        display: none !important;
+        height: 0px !important;
     }
     
     /* Estilo para los contenedores/cards de Streamlit */
@@ -158,7 +161,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# DATOS DE APPS: ENTREGA 1 (10 APPS ORIGINALES)
+# DATOS DE APPS: ENTREGA 1 (10 APPS)
 # ==========================================
 apps_entrega_1 = [
     {
@@ -234,7 +237,7 @@ apps_entrega_1 = [
 ]
 
 # ==========================================
-# DATOS DE APPS: ENTREGA 2 (8 APPS DE LAS CLASES 11, 12 Y 13)
+# DATOS DE APPS: ENTREGA 2 (8 APPS)
 # ==========================================
 apps_entrega_2 = [
     {
