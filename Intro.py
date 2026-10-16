@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==========================================
-# ESTILOS CSS UX/UI (BANNER Y AZUL COBALTO)
+# ESTILOS CSS UX/UI (BANNER, PESTAÑAS Y CARDS)
 # ==========================================
 st.markdown("""
 <style>
@@ -43,6 +43,26 @@ st.markdown("""
         color: #DBEAFE;
         font-size: 1.05rem;
         margin: 0;
+    }
+    
+    /* Estilo para las Pestañas (st.tabs) */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 12px;
+        margin-bottom: 1.5rem;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        background-color: #E2E8F0 !important;
+        border-radius: 10px 10px 0 0 !important;
+        padding: 0.6rem 1.5rem !important;
+        font-weight: 700 !important;
+        color: #475569 !important;
+        border: none !important;
+    }
+
+    .stTabs [aria-selected="true"] {
+        background-color: #2563EB !important;
+        color: #FFFFFF !important;
     }
     
     /* Estilo para los contenedores/cards de Streamlit */
@@ -107,7 +127,7 @@ with st.sidebar:
     st.markdown("---")
     st.write(
         "Bienvenido a mi portafolio interactivo de prototipos de IA. "
-        "Explora soluciones avanzadas de visión por computador, procesamiento de lenguaje natural y síntesis de voz."
+        "Navega entre las pestañas superiores para explorar los desarrollos de cada entrega."
     )
     st.markdown("---")
     st.caption("EAFIT | Interfaces Multimodales & Producto")
@@ -118,14 +138,14 @@ with st.sidebar:
 st.markdown("""
 <div class="hero-banner">
     <h1>Mis Aplicaciones de Inteligencia Artificial ✨</h1>
-    <p>Repositorio interactivo de proyectos e interfaces desarrolladas para procesamiento multimodal, visión y NLP.</p>
+    <p>Repositorio interactivo de proyectos e interfaces organizadas cronológicamente por entregas.</p>
 </div>
 """, unsafe_allow_html=True)
 
 # ==========================================
-# DATOS DE APPS (ORDEN EXACTO)
+# DATOS DE APPS: ENTREGA 1
 # ==========================================
-apps = [
+apps_entrega_1 = [
     {
         "num": "01",
         "title": "Mi Primera App IA",
@@ -199,17 +219,72 @@ apps = [
 ]
 
 # ==========================================
-# RENDERIZADO EN CARDS CON CONTENEDOR FÍSICO
+# DATOS DE APPS: ENTREGA 2
 # ==========================================
-for i in range(0, len(apps), 3):
-    cols = st.columns(3)
-    group = apps[i:i+3]
-    
-    for idx, app in enumerate(group):
-        with cols[idx]:
-            with st.container(border=True):
-                st.markdown(f'<span class="app-badge">APP {app["num"]}</span>', unsafe_allow_html=True)
-                st.subheader(f"{app['icon']} {app['title']}")
-                st.write(app['desc'])
-                st.write("")
-                st.link_button("Abrir App 🚀", app['url'], use_container_width=True)
+apps_entrega_2 = [
+    {
+        "num": "01",
+        "title": "BrandIntel AI (RAG)",
+        "icon": "📈",
+        "desc": "Análisis estratégico de reportes de marca, competencia y briefs en PDF.",
+        "url": "https://chatpdfsebastianboterozz.streamlit.app/"
+    },
+    {
+        "num": "02",
+        "title": "BrandVision AI (Vision)",
+        "icon": "👁️‍🗨️",
+        "desc": "Auditoría visio-estratégica de piezas publicitarias e identidad de marca con GPT-4o.",
+        "url": "https://visionappsebastianboterozz.streamlit.app/"
+    },
+    {
+        "num": "03",
+        "title": "Lienzo de Princesas",
+        "icon": "👑",
+        "desc": "Tablero de dibujo interactivo con generación automática de cuentos de hadas.",
+        "url": "#"  # Agrega la URL desplegada de esta app si la tienes
+    },
+    {
+        "num": "04",
+        "title": "AuraHome Control por Voz",
+        "icon": "🎙️",
+        "desc": "Interfaz multimodal de voz para control de dispositivos Smart Home mediante MQTT.",
+        "url": "#"  # Agrega la URL desplegada de esta app si la tienes
+    },
+    {
+        "num": "05",
+        "title": "AuraIoT Command Center",
+        "icon": "⚡",
+        "desc": "Panel de telemetría e Internet de las Cosas (IoT) para control digital y analógico.",
+        "url": "#"  # Agrega la URL desplegada de esta app si la tienes
+    }
+]
+
+# Función auxiliar para renderizar la grilla de cards dentro de cualquier pestaña
+def render_app_grid(apps_list):
+    for i in range(0, len(apps_list), 3):
+        cols = st.columns(3)
+        group = apps_list[i:i+3]
+        
+        for idx, app in enumerate(group):
+            with cols[idx]:
+                with st.container(border=True):
+                    st.markdown(f'<span class="app-badge">APP {app["num"]}</span>', unsafe_allow_html=True)
+                    st.subheader(f"{app['icon']} {app['title']}")
+                    st.write(app['desc'])
+                    st.write("")
+                    st.link_button("Abrir App 🚀", app['url'], use_container_width=True)
+
+# ==========================================
+# NAVEGACIÓN POR PESTAÑAS (ST.TABS)
+# ==========================================
+tab1, tab2 = st.tabs(["📦 Entrega 1: Fundamentos & Multimodalidad", "🚀 Entrega 2: RAG, Vision, IoT & Canvas"])
+
+with tab1:
+    st.caption("Proyectos desarrollados durante la primera etapa del curso.")
+    st.write("")
+    render_app_grid(apps_entrega_1)
+
+with tab2:
+    st.caption("Soluciones avanzadas de RAG, Visión Computacional, IoT y lienzos generativos.")
+    st.write("")
+    render_app_grid(apps_entrega_2)
