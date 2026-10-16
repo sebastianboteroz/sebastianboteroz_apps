@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==========================================
-# ESTILOS CSS UX/UI (PESTAÑAS CAPSULA Y CARDS)
+# ESTILOS CSS UX/UI (PADDING DE PESTAÑAS Y CARDS)
 # ==========================================
 st.markdown("""
 <style>
@@ -45,22 +45,28 @@ st.markdown("""
         margin: 0;
     }
 
-    /* AJUSTES UX/UI PARA PESTAÑAS TIPO CÁPSULA (PILLS) */
+    /* FIX DEFINITIVO DE ESPACIADO INTERNO EN PESTAÑAS (st.tabs) */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 16px !important;
+        gap: 20px !important;
         margin-bottom: 2rem !important;
         border-bottom: none !important;
     }
 
+    /* Estilo del botón general del Tab */
     .stTabs [data-baseweb="tab"] {
         background-color: #E2E8F0 !important;
-        border-radius: 12px !important;
-        padding: 0.8rem 2.2rem !important; /* Espaciado lateral amplio */
-        font-weight: 700 !important;
-        font-size: 1rem !important;
-        color: #475569 !important;
+        border-radius: 30px !important; /* Estilo Cápsula Pill completo */
+        padding: 0.8rem 2.8rem !important; /* Espaciado extra a los lados */
         border: 1px solid #CBD5E1 !important;
         transition: all 0.2s ease !important;
+    }
+
+    /* Forzar margen en el texto interno del Tab */
+    .stTabs [data-baseweb="tab"] p, .stTabs [data-baseweb="tab"] span {
+        font-weight: 700 !important;
+        font-size: 1.05rem !important;
+        padding: 0 0.5rem !important;
+        margin: 0 !important;
     }
 
     .stTabs [data-baseweb="tab"]:hover {
@@ -68,19 +74,21 @@ st.markdown("""
         color: #1E293B !important;
     }
 
-    /* Pestaña seleccionada (Pill Activa en Azul Cobalto) */
+    /* Tab Activo en Azul Cobalto con bastante aire */
     .stTabs [aria-selected="true"] {
         background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
-        color: #FFFFFF !important;
         border-color: #2563EB !important;
-        border-radius: 12px !important;
+        border-radius: 30px !important;
         box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
     }
 
-    /* Ocultar franja/línea roja por completo */
+    .stTabs [aria-selected="true"] p, .stTabs [aria-selected="true"] span {
+        color: #FFFFFF !important;
+    }
+
+    /* Ocultar barra o borde inferior nativo */
     .stTabs [data-baseweb="tab-border-highlight"] {
         display: none !important;
-        height: 0px !important;
     }
     
     /* Estilo para los contenedores/cards de Streamlit */
@@ -324,6 +332,6 @@ with tab1:
     render_app_grid(apps_entrega_1)
 
 with tab2:
-    st.caption("Proyectos de RAG, Visión por Computador, Lienzos Generativos e IoT (8 aplicaciones - Clases 11 a 13).")
+    st.caption("Proyectos de RAG, Visión por Computador, Lienzos Generativos e IoT (8 aplicaciones).")
     st.write("")
     render_app_grid(apps_entrega_2)
