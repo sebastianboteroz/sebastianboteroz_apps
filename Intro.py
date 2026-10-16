@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==========================================
-# ESTILOS CSS UX/UI (BANNER, PESTAÑAS Y CARDS)
+# ESTILOS CSS UX/UI (REDONDEO PESTAÑAS Y CARDS)
 # ==========================================
 st.markdown("""
 <style>
@@ -44,25 +44,40 @@ st.markdown("""
         font-size: 1.05rem;
         margin: 0;
     }
-    
-    /* Estilo para las Pestañas (st.tabs) */
+
+    /* BORDES REDONDEADOS Y ESPACIADO FORZADO EN PESTAÑAS (st.tabs) */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 12px;
-        margin-bottom: 1.5rem;
+        gap: 12px !important;
+        margin-bottom: 2rem !important;
+        border-bottom: 2px solid #E2E8F0 !important;
     }
 
     .stTabs [data-baseweb="tab"] {
         background-color: #E2E8F0 !important;
-        border-radius: 10px 10px 0 0 !important;
-        padding: 0.6rem 1.5rem !important;
+        border-top-left-radius: 12px !important;
+        border-top-right-radius: 12px !important;
+        padding: 0.8rem 1.8rem !important;
         font-weight: 700 !important;
+        font-size: 0.95rem !important;
         color: #475569 !important;
-        border: none !important;
+        border: 1px solid #CBD5E1 !important;
+        border-bottom: none !important;
+        transition: all 0.2s ease !important;
     }
 
+    /* Pestaña activa con bordes bien definidos y sin barra roja */
     .stTabs [aria-selected="true"] {
         background-color: #2563EB !important;
         color: #FFFFFF !important;
+        border-color: #2563EB !important;
+        border-top-left-radius: 12px !important;
+        border-top-right-radius: 12px !important;
+        box-shadow: 0 -2px 10px rgba(37, 99, 235, 0.2) !important;
+    }
+
+    /* Ocultar la barra indicadora roja nativa de Streamlit */
+    .stTabs [data-baseweb="tab-border-highlight"] {
+        background-color: transparent !important;
     }
     
     /* Estilo para los contenedores/cards de Streamlit */
@@ -138,12 +153,12 @@ with st.sidebar:
 st.markdown("""
 <div class="hero-banner">
     <h1>Mis Aplicaciones de Inteligencia Artificial ✨</h1>
-    <p>Repositorio interactivo de proyectos e interfaces organizadas cronológicamente por entregas.</p>
+    <p>Repositorio interactivo de proyectos e interfaces desarrolladas para procesamiento multimodal, visión, NLP e IoT.</p>
 </div>
 """, unsafe_allow_html=True)
 
 # ==========================================
-# DATOS DE APPS: ENTREGA 1
+# DATOS DE APPS: ENTREGA 1 (10 APPS ORIGINALES)
 # ==========================================
 apps_entrega_1 = [
     {
@@ -219,43 +234,64 @@ apps_entrega_1 = [
 ]
 
 # ==========================================
-# DATOS DE APPS: ENTREGA 2
+# DATOS DE APPS: ENTREGA 2 (8 APPS DE LAS CLASES 11, 12 Y 13)
 # ==========================================
 apps_entrega_2 = [
     {
         "num": "01",
-        "title": "BrandIntel AI (RAG)",
+        "title": "Chat PDF",
         "icon": "📈",
-        "desc": "Análisis estratégico de reportes de marca, competencia y briefs en PDF.",
+        "desc": "Análisis conversacional e interacción con documentos PDF mediante arquitectura RAG.",
         "url": "https://chatpdfsebastianboterozz.streamlit.app/"
     },
     {
         "num": "02",
-        "title": "BrandVision AI (Vision)",
+        "title": "App Vision",
         "icon": "👁️‍🗨️",
-        "desc": "Auditoría visio-estratégica de piezas publicitarias e identidad de marca con GPT-4o.",
+        "desc": "Interpretación visual, auditoría multimodal y análisis de imágenes con GPT-4o.",
         "url": "https://visionappsebastianboterozz.streamlit.app/"
     },
     {
         "num": "03",
-        "title": "Lienzo de Princesas",
-        "icon": "👑",
-        "desc": "Tablero de dibujo interactivo con generación automática de cuentos de hadas.",
-        "url": "#"  # Agrega la URL desplegada de esta app si la tienes
+        "title": "Handwrite (MNIST)",
+        "icon": "✍️",
+        "desc": "Predicción y reconocimiento de dígitos escritos a mano mediante redes neuronales.",
+        "url": "https://mnispredsebastianboteroz.streamlit.app/"
     },
     {
         "num": "04",
-        "title": "AuraHome Control por Voz",
-        "icon": "🎙️",
-        "desc": "Interfaz multimodal de voz para control de dispositivos Smart Home mediante MQTT.",
-        "url": "#"  # Agrega la URL desplegada de esta app si la tienes
+        "title": "Tablero Propio - Fábula Infantil",
+        "icon": "🎨",
+        "desc": "Lienzo de dibujo mágico para niños que genera cuentos a partir de bocetos creados.",
+        "url": "https://tableropropiosebastianboteroz.streamlit.app/"
     },
     {
         "num": "05",
-        "title": "AuraIoT Command Center",
+        "title": "Tablero API Key",
+        "icon": "🖌️",
+        "desc": "Reconocimiento e interpretación de trazados con autenticación por clave API.",
+        "url": "https://drawrecogsbzsebastianboteroz.streamlit.app/"
+    },
+    {
+        "num": "06",
+        "title": "Lector de Sensor MQTT",
+        "icon": "📡",
+        "desc": "Monitoreo y recepción de telemetría de datos de sensores en tiempo real vía MQTT.",
+        "url": "https://recepmqttsebastianboteroz.streamlit.app/"
+    },
+    {
+        "num": "07",
+        "title": "MQTT Control",
         "icon": "⚡",
-        "desc": "Panel de telemetría e Internet de las Cosas (IoT) para control digital y analógico.",
-        "url": "#"  # Agrega la URL desplegada de esta app si la tienes
+        "desc": "Panel de control para emisión de comandos digitales y analógicos por MQTT.",
+        "url": "https://sendcmqttsebastianboteroz.streamlit.app/"
+    },
+    {
+        "num": "08",
+        "title": "Control de Voz",
+        "icon": "🎙️",
+        "desc": "Interfaz multimodal impulsada por voz para el envío de señales a sistemas IoT.",
+        "url": "https://ctrlvoicesebastianboteroz.streamlit.app/"
     }
 ]
 
@@ -277,14 +313,14 @@ def render_app_grid(apps_list):
 # ==========================================
 # NAVEGACIÓN POR PESTAÑAS (ST.TABS)
 # ==========================================
-tab1, tab2 = st.tabs(["📦 Entrega 1: Fundamentos & Multimodalidad", "🚀 Entrega 2: RAG, Vision, IoT & Canvas"])
+tab1, tab2 = st.tabs(["📦 Entrega 1", "🚀 Entrega 2"])
 
 with tab1:
-    st.caption("Proyectos desarrollados durante la primera etapa del curso.")
+    st.caption("Proyectos desarrollados durante la primera etapa del curso (10 aplicaciones).")
     st.write("")
     render_app_grid(apps_entrega_1)
 
 with tab2:
-    st.caption("Soluciones avanzadas de RAG, Visión Computacional, IoT y lienzos generativos.")
+    st.caption("Proyectos de RAG, Visión por Computador, Lienzos Generativos e IoT (8 aplicaciones - Clases 11 a 13).")
     st.write("")
     render_app_grid(apps_entrega_2)
